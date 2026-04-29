@@ -165,3 +165,5 @@ nginx/*.log
 
 # local cache
 .npm_cache/
+
+report.md

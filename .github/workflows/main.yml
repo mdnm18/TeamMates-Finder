@@ -1,0 +1,55 @@
+name: TeamMates Finder CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    # Backend Setup
+    - name: Use Node.js ${{ matrix.node-version }} for Server
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './server/package-lock.json'
+        
+    - name: Install Server Dependencies
+      working-directory: ./server
+      run: npm ci
+
+    # Frontend Setup
+    - name: Use Node.js ${{ matrix.node-version }} for Client
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: './client/package-lock.json'
+        
+    - name: Install Client Dependencies
+      working-directory: ./client
+      run: npm ci
+
+    - name: Build Client
+      working-directory: ./client
+      run: npm run build
+
+  # Example deployment job (stub)
+  # deploy:
+  #   needs: build-and-test
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/main'
+  #   steps:
+  #   - name: Deploy to Server
+  #     run: echo "Deployment script goes here"

@@ -22,3 +22,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+node_modules/
+.env
+dist/
+build/
+
+# AI / local tooling
+.agent/
+.claude/
+.gemini/
+
+# local cache
+.npm_cache/

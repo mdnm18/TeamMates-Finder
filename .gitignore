@@ -137,3 +137,31 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files (important for your project)
+server/.env
+client/.env
+
+# Firebase secret key (VERY IMPORTANT)
+server/config/serviceAccountKey.json
+
+# Docker overrides (optional)
+docker-compose.override.yml
+
+# Logs (extra safety)
+*.log
+
+# Nginx temp files (optional)
+nginx/*.log
+
+# AI / local tooling
+.agent/
+.claude/
+.gemini/
+
+# local cache
+.npm_cache/

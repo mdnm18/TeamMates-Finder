@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-Test@1234}
+      MYSQL_DATABASE: ${DB_NAME:-teammates_finder}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  server:
+    build:
+      context: ./server
+    restart: always
+    ports:
+      - "5001:5001"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=${DB_PASSWORD:-Test@1234}
+      - DB_NAME=${DB_NAME:-teammates_finder}
+      - JWT_SECRET=${JWT_SECRET:-ab84b5c71dca34f8287ea96e21b12d59ea3bf8c9d123d219bb2c43118cf9e683}
+      - PORT=5001
+    depends_on:
+      - db
+
+  client:
+    build:
+      context: ./client
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
+volumes:
+  db_data:

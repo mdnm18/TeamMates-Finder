@@ -1,49 +1,49 @@
-# TeamMates Finder
+# CodeHive
 A web platform for SRMIST students to find teammates for projects, hackathons, and competitive programming.
 
 
 ```
-PairFinder/
+CodeHive/
 ├── .git/
 ├── client/                 <-- Your React + Vite Frontend
 │   ├── public/
 │   │   └── vite.svg
 │   ├── src/
-│   │   ├── assets/         # Images, fonts, SVG icons
-│   │   ├── components/     # Reusable UI components (Navbar.jsx, PostCard.jsx, Button.jsx)
-│   │   ├── pages/          # Page-level components (HomePage.jsx, ProfilePage.jsx, LoginPage.jsx)
-│   │   ├── redux/          # Redux Toolkit state management
-│   │   │   ├── slices/     # Feature slices (authSlice.js, postSlice.js)
-│   │   │   └── store.js    # The main Redux store configuration
-│   │   ├── services/       # API call functions (e.g., api.js using Axios)
-│   │   ├── utils/          # Helper functions (date formatting, etc.)
-│   │   ├── App.jsx         # Main App component with routing
-│   │   ├── main.jsx        # Entry point for React
-│   │   └── index.css       # Global styles
-│   ├── .eslintrc.cjs
-│   ├── .gitignore          # Specific to client (already covered by root .gitignore)
-│   ├── index.html
-│   ├── package.json
-│   ├── postcss.config.js   # For Tailwind CSS
-│   ├── tailwind.config.js  # For Tailwind CSS
-│   └── vite.config.js
-│
-├── server/                 <-- Your Node.js + Express Backend
-│   ├── config/
-│   │   └── db.js           # MongoDB connection logic
-│   ├── controllers/        # Handles business logic (authController.js, postController.js)
-│   ├── middleware/
-│   │   └── authMiddleware.js # Verifies JWT tokens
-│   ├── models/             # Mongoose schemas (User.js, Post.js, Notification.js)
-│   ├── routes/             # API endpoint definitions (authRoutes.js, postRoutes.js)
-│   ├── services/           # Reusable services (notificationService.js, emailService.js)
-│   ├── .env                # IMPORTANT: Store secrets here (DB_URI, JWT_SECRET, etc.)
-│   ├── .gitignore
-│   ├── package.json
-│   └── server.js           # Main server entry point
-│
-├── .gitignore              # The main gitignore from GitHub
-├── LICENSE
-└── README.md
-
+│   │   ├── components/         # Reusable UI (Cards, Modals)
+│   │   ├── pages/              # Route-level views (Profile, Dashboard)
+│   │   ├── redux/              # State management slices
+│   │   ├── services/           # Axios interceptors, Socket instance
+│   │   └── index.css           # Tailwind injection & print media queries
+│   ├── Dockerfile              # Multi-stage Nginx build
+│   └── vite.config.js          # Build configuration & proxy
+├── server/                     # Node.js Backend
+│   ├── config/                 # Firebase & DB configuration
+│   ├── controllers/            # Core business logic
+│   ├── models/                 # Sequelize MySQL Schemas
+│   ├── routes/                 # Express API endpoints
+│   ├── services/               # Socket.io Notification Engine
+│   └── Dockerfile              # Node.js environment build
+├── nginx/                      # Reverse Proxy Configuration
+│   └── nginx.conf              # Upstream routing rules
+├── docker-compose.yml          # Container orchestration
+└── .github/workflows/          # CI/CD Pipeline definitions
 ```
+
+---
+
+## 11. Future Enhancements & Contributing
+
+### **Roadmap**
+*   [ ] **Redis Caching**: Implement AWS ElastiCache to store high-frequency read queries (like the Global Feed) to reduce RDS load.
+*   [ ] **Kafka Message Queue**: Decouple the real-time notification engine using Apache Kafka for extreme scalability during university-wide hackathons.
+*   [ ] **Algorithmic Matchmaking AI**: Integrate a small Python/FastAPI microservice to run Cosine Similarity algorithms on user skills to automate partner recommendations.
+
+### **Contributing**
+1. Fork the Project.
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the Branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
+
+---
+*Architected and developed with ❤️ for the student developer community.*
